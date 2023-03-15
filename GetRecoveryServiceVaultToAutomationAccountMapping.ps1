@@ -175,7 +175,7 @@ catch {
 }
 
     
-Write-InformationTracing  ">>>>RecoveryValutName,RecoveryValutID,ResourceGroup,Subscription,RVault Maooing State,RVault Mapping agentAutoUpdateStatus,RVault Mapping automationAccountAuthenticationType,RVault Mapping automationAccountArmId,RVault Mapping scheduleName,RVault Mapping jobScheduleName,RVault Mapping instanceType)"
+Write-InformationTracing  "RecoveryValutName,RecoveryValutID,ResourceGroup,Subscription,RVault Maooing State,RVault Mapping agentAutoUpdateStatus,RVault Mapping automationAccountAuthenticationType,RVault Mapping automationAccountArmId,RVault Mapping scheduleName,RVault Mapping jobScheduleName,RVault Mapping instanceType"
 $subscriptions = Get-AzSubscription 
 foreach($sub in $subscriptions){
     $Context = Set-AzContext -Subscription $sub.Name
@@ -193,11 +193,11 @@ foreach($sub in $subscriptions){
 			{            
 				if( $Mapping.properties.providerSpecificDetails )
 				{
-				    Write-InformationTracing  ">>>>$($RV.Name),$($RV.ID),$($RV.ResourceGroupName),$($sub.Name),$($Mapping.Properties.State),$($Mapping.properties.providerSpecificDetails.agentAutoUpdateStatus),$($Mapping.properties.providerSpecificDetails.automationAccountAuthenticationType),$($Mapping.properties.providerSpecificDetails.automationAccountArmId),$($Mapping.properties.providerSpecificDetails.scheduleName),$($Mapping.properties.providerSpecificDetails.jobScheduleName),$($Mapping.properties.providerSpecificDetails.instanceType)"
+				    Write-InformationTracing  "$($RV.Name),$($RV.ID),$($RV.ResourceGroupName),$($sub.Name),$($Mapping.Properties.State),$($Mapping.properties.providerSpecificDetails.agentAutoUpdateStatus),$($Mapping.properties.providerSpecificDetails.automationAccountAuthenticationType),$($Mapping.properties.providerSpecificDetails.automationAccountArmId),$($Mapping.properties.providerSpecificDetails.scheduleName),$($Mapping.properties.providerSpecificDetails.jobScheduleName),$($Mapping.properties.providerSpecificDetails.instanceType)"
                 }
                 else
                 {
-                    Write-InformationTracing  ">>>>$($RV.Name),$($RV.ID),$($RV.ResourceGroupName),$($sub.Name),$($Mapping.Properties.State),null,null,null,null,null,null"
+                    Write-InformationTracing  "$($RV.Name),$($RV.ID),$($RV.ResourceGroupName),$($sub.Name),$($Mapping.Properties.State),null,null,null,null,null,null"
                 }
 			}
 		}
