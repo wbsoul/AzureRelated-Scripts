@@ -1,3 +1,12 @@
+<#
+Using the "UpdateAutomationAccount.ps1" script provided by MS as a template. I have modified it to be able to make an inventory for the Recovery Service Vaults mapping to Automation Accounts and Schedules. 
+You just have to:
+- Add the script as a 5.1 powershell Runbook 
+- In the Automation account hosting this inventory runbook, Add Az.Accounts & Az.RecoveryServices modules under the  shared resources modules 
+- The Runbook will be using System Assighned Identity, so make sure you have enabled it and gave it Roles necessary to read all subscriptions.
+- The Script will make a very primitive csv output with all details
+#>
+
 $TaskId = [guid]::NewGuid().ToString()
 $SubscriptionId = "00000000-0000-0000-0000-000000000000"
 $AsrApiVersion = "2021-12-01"
@@ -166,7 +175,7 @@ catch {
 }
 
     
-Write-InformationTracing  ">>>>RecoveryValutName,RecoveryValutID,ResourceGroup,Subscription,AutomationAccountarmId,RVault Maooing State,RVault Mapping agentAutoUpdateStatus,RVault Mapping automationAccountAuthenticationType,RVault Mapping automationAccountArmId,RVault Mapping scheduleName,RVault Mapping jobScheduleName,RVault Mapping instanceType)"
+Write-InformationTracing  ">>>>RecoveryValutName,RecoveryValutID,ResourceGroup,Subscription,RVault Maooing State,RVault Mapping agentAutoUpdateStatus,RVault Mapping automationAccountAuthenticationType,RVault Mapping automationAccountArmId,RVault Mapping scheduleName,RVault Mapping jobScheduleName,RVault Mapping instanceType)"
 $subscriptions = Get-AzSubscription 
 foreach($sub in $subscriptions){
     $Context = Set-AzContext -Subscription $sub.Name
